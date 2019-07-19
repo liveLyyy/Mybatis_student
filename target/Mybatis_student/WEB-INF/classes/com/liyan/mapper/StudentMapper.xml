@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liyan.mapper.StudentMapper">
+    <select id="findPage" resultType="Student" parameterType="PageInfo">
+      select * from student
+      <where>
+        <if test="sname != null and sname != ''">
+            <bind name="sname" value="'%'+sname+'%'"/>
+            and name like #{sname}
+        </if>
+        <if test="tname != null and tname != ''">
+            <bind name="tname" value="'%'+tname+'%'"/>
+            and tid in(select id from teacher where name like #{tname})
+        </if>
+      </where>
+      limit #{pageStart},#{pageSize}
+    </select>
+
+    <select id="findCount" resultType="Long" parameterType="PageInfo">
+        select count(*) from student
+        <where>
+            <if test="sname != null and sname != ''">
+                <bind name="sname" value="'%'+sname+'%'"/>
+                and name like #{sname}
+            </if>
+            <if test="tname != null and tname != ''">
+                <bind name="tname" value="'%'+tname+'%'"/>
+                and tid in(select id from teacher where name like #{tname})
+            </if>
+        </where>
+    </select>
+
+    <select id="findAll" resultType="Student" parameterType="Student">
+        select * from student
+    </select>
+</mapper>
