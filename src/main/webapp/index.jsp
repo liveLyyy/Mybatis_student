@@ -28,16 +28,16 @@
         $(".page:eq(0)").click(function () {
             pageNumber = parseInt(pageNumber) - 1;
             if (pageNumber >= 1) {
-                location.href = "show?pageSize=" + pageSize + "&pageNumber" + pageNumber + "&tname=" + $(":text[name='tname']").val() + "&sname=" + $(":text[name='sname']").val();
+                window.location.href = "show?pageSize=" + pageSize + "&pageNumber=" + pageNumber + "&tname=" + $(":text[name='tname']").val() + "&sname=" + $(":text[name='sname']").val();
             } else {
                 pageNumber = 1;
             }
             return false;
         })
         $(".page:eq(1)").click(function () {
-            pageNumber = parseInt(pageNumber) + 1;
-            if (pageNumber <= 1) {
-                location.href = "show?pageSize=" + pageSize + "&pageNumber" + pageNumber + "&tname=" + $(":text[name='tname']").val() + "&sname=" + $(":text[name='sname']").val();
+            pageNumber =parseInt(pageNumber)+ 1;
+            if (pageNumber <= total) {
+                window.location.href = "show?pageSize=" + pageSize + "&pageNumber=" + pageNumber + "&tname=" + $(":text[name='tname']").val() + "&sname=" + $(":text[name='sname']").val();
             } else {
                 pageNumber = total;
             }

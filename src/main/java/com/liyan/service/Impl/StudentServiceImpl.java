@@ -15,10 +15,10 @@ public class StudentServiceImpl implements StudentService {
     public PageInfo showPage(String sname, String tname, String pageSizestr, String pageNumberstr) {
         int pageSize = 2;
         int pageNumber = 1;
-        if (pageSizestr != null && pageSizestr.equals("")) {
+        if (pageSizestr != null && !pageSizestr.equals("")) {
             pageSize = Integer.parseInt(pageSizestr);
         }
-        if (pageNumberstr != null && pageNumberstr.equals("")) {
+        if (pageNumberstr != null && !pageNumberstr.equals("")) {
             pageNumber = Integer.parseInt(pageNumberstr);
         }
         SqlSession sqlSession = MybatisUtil.getSession();
